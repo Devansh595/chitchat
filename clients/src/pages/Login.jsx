@@ -20,12 +20,13 @@ function Login() {
   const pageRoute = useNavigate()
   const googleSuccess = async (res) => {
     if (res?.profileObj) {
-      console.log("this is res profile object",res.profileObj)
+      console.log("this is res profile object", res.profileObj)
+
       setIsLoading(true)
       const response = await googleAuth({ tokenId: res.tokenId })
       setIsLoading(false)
 
-      console.log("response :" + res)
+      console.log("response :" + response)
       if (response.data.token) {
         localStorage.setItem("userToken", response.data.token)
         pageRoute("/chats")
@@ -118,7 +119,7 @@ function Login() {
             <GoogleLogin
               clientId={process.env.REACT_APP_CLIENT_ID}
               render={(renderProps) => (
-                <button style={{ borderImage: "linear-gradient(to right, #2EB46D 50%, #36C5F0 80%)", borderImageSlice: "1" }} onClick={renderProps.onClick} disabled={renderProps.disabled} aria-label="Continue with google" className="focus:ring-2 focus:ring-offset-1  py-3.5 px-4 border rounded-lg  flex items-center w-[100%]  sm:w-[80%]" disableElevation={true} disablefocusRipple={true}>
+                <button style={{ borderImage: "linear-gradient(to right, #2EB46D 50%, #36C5F0 80%)", borderImageSlice: "1" }} onClick={renderProps.onClick} disabled={renderProps.disabled} aria-label="Continue with google" className="focus:ring-2 focus:ring-offset-1  py-3.5 px-4 border rounded-lg  flex items-center w-[100%]  sm:w-[80%]" disableelevation='true' disablefocusripple='true'>
                   <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg2.svg" alt="google" />
                   <p className="text-[base] font-medium ml-4 text-[#fff]">Continue with Google</p>
                 </button>
